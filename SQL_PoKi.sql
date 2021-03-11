@@ -88,7 +88,14 @@
 
 
 -- 10. How many authors are in the first, second or third grades?
-       
+        SELECT 
+            COUNT(author.id) AS NumberOfAuthors, Grade.Name AS Grade
+        FROM Author
+            LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        GROUP BY Grade.Name
+        HAVING Grade.Name = '1st Grade'
+            OR Grade.Name = '2nd Grade'
+            OR Grade.Name = '3rd Grade';
 
 
 
@@ -105,13 +112,27 @@
 
 
 
+
 -- 12. How many poems are there per grade?
+    SELECT 
+        COUNT(Poem.Id) AS NumberOfPoems, Grade.Name AS Grade
+    FROM Poem   
+        LEFT JOIN Author ON Poem.AuthorId = Author.Id
+        LEFT JOIN Grade ON Author.GradeId = Grade.Id
+    GROUP BY Grade.Id, Grade.Name
+    ORDER BY Grade.Name;
+
 
 
 
 
 -- 13. How many authors are in each grade? (Order your results by grade starting with 1st Grade)
-
+    SELECT 
+        COUNT(Author.Id) AS NumberOfAuthors, Grade.Name AS Grade
+    FROM Author   
+        LEFT JOIN Grade ON Author.GradeId = Grade.Id
+    GROUP BY Grade.Id, Grade.Name
+    ORDER BY Grade.Name;
 
 
 
