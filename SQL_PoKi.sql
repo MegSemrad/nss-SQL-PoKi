@@ -17,17 +17,33 @@
 
 -- 4. Sort authors alphabetically by name. What are the names of the top 76 authors?
         SELECT 
-            top 75 Name
+            top 76 Name
         FROM 
             Author 
         ORDER BY Name;
 
 
 -- 5. Starting with the above query, add the grade of each of the authors.
-
+        SELECT 
+            top 76 Author.Name,
+            Grade.Name AS Grade
+        FROM 
+            Author 
+        LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        ORDER BY Name;
 
 
 -- 6. Starting with the above query, add the recorded gender of each of the authors.
+        SELECT 
+            top 76 Author.Name,
+            Grade.Name AS Grade,
+            Gender.Name AS Gender
+        FROM 
+            Author 
+        LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        LEFT JOIN Gender ON Author.GenderId = Gender.Id
+
+        ORDER BY Name;
 
 
 
