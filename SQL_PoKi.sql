@@ -78,8 +78,9 @@
 
 
 -- 9. How many authors are in the third grade?
+-- Can use [] as belowo to allow for spacing between alias words OR can use '' OR can use AS AliasName
         SELECT 
-            COUNT(Author.id) AS NumberOfThirdGradeAuthors
+            COUNT(Author.id) [Number Of Third Grade Authors]
         FROM Author
             LEFT JOIN Grade ON Author.GradeId = Grade.Id
         WHERE   
@@ -103,7 +104,7 @@
 
 -- 11. What is the total number of poems written by fourth graders?
         SELECT 
-            COUNT(Poem.Id) AS NumberOfPoemsByFourthGraders
+            COUNT(Poem.Id) [Number Of Poems By Fourth Graders]
         FROM  Poem
             LEFT JOIN Author ON Poem.AuthorId = Author.Id
             LEFT JOIN Grade ON Author.GradeId = Grade.Id
@@ -169,10 +170,10 @@
 
 -- 17. How many poems are not associated with any emotion?
         SELECT 
-            COUNT(PoemEmotion.id) AS NumberOfPoemsWithoutEmotion
-        FROM PoemEmotion
-        WHERE PoemEmotion.EmotionId IS NULL;
-        -- NOT SURE THIS IS CORRECT 
+            COUNT(Poem.Id) [Emotionless Poems]
+        FROM Poem
+        LEFT JOIN PoemEmotion ON Poem.Id = PoemEmotion.PoemId
+        WHERE PoemEmotion.PoemId IS NULL 
 
 
 
