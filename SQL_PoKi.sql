@@ -15,14 +15,16 @@
 
 
 -- 3. How many poems are in the database?
-        SELECT COUNT(p.Id) FROM Poem p
+        SELECT 
+            COUNT(p.Id) 
+        FROM Poem p
 
 
 
 
 -- 4. Sort authors alphabetically by name. What are the names of the top 76 authors?
         SELECT 
-            top 76 Name
+            TOP 76 Name
         FROM 
             Author 
         ORDER BY Name;
@@ -32,7 +34,7 @@
 
 -- 5. Starting with the above query, add the grade of each of the authors.
         SELECT 
-            top 76 Author.Name,
+            TOP 76 Author.Name,
             Grade.Name AS Grade
         FROM 
             Author 
@@ -44,7 +46,7 @@
 
 -- 6. Starting with the above query, add the recorded gender of each of the authors.
         SELECT 
-            top 76 Author.Name,
+            TOP 76 Author.Name,
             Grade.Name AS Grade,
             Gender.Name AS Gender
         FROM 
@@ -58,12 +60,14 @@
 
 
 -- 7. What is the total number of words in all poems in the database?
+        SELECT SUM(WordCount) AS TotalNumberWordInAllPoems
+        FROM Poem
 
 
 
 
 -- 8. Which poem has the fewest characters?
-    SELECT Poem.CharCount, Poem.Title 
+    SELECT Poem.CharCount, Poem.Title AS PoemTitle 
     FROM Poem
     WHERE Poem.CharCount = (
         SELECT MIN(Poem.CharCount)
@@ -75,7 +79,7 @@
 
 -- 9. How many authors are in the third grade?
         SELECT 
-            count(author.id) AS NumberOfThirdGradeAuthors
+            COUNT(Author.id) AS NumberOfThirdGradeAuthors
         FROM Author
             LEFT JOIN Grade ON Author.GradeId = Grade.Id
         WHERE   
@@ -84,12 +88,20 @@
 
 
 -- 10. How many authors are in the first, second or third grades?
+       
+
 
 
 
 
 -- 11. What is the total number of poems written by fourth graders?
-
+        SELECT 
+            COUNT(Poem.Id) AS NumberOfPoemsByFourthGraders
+        FROM  Poem
+            LEFT JOIN Author ON Poem.AuthorId = Author.Id
+            LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        WHERE   
+            Grade.Name = '4th Grade';
 
 
 
