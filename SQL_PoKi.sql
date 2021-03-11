@@ -17,7 +17,7 @@
 -- 3. How many poems are in the database?
         SELECT 
             COUNT(p.Id) 
-        FROM Poem p
+        FROM Poem p;
 
 
 
@@ -61,7 +61,7 @@
 
 -- 7. What is the total number of words in all poems in the database?
         SELECT SUM(WordCount) AS TotalNumberWordInAllPoems
-        FROM Poem
+        FROM Poem;
 
 
 
@@ -83,7 +83,7 @@
         FROM Author
             LEFT JOIN Grade ON Author.GradeId = Grade.Id
         WHERE   
-            Grade.Name = '3rd Grade'
+            Grade.Name = '3rd Grade';
 
 
 
@@ -114,29 +114,33 @@
 
 
 -- 12. How many poems are there per grade?
-    SELECT 
-        COUNT(Poem.Id) AS NumberOfPoems, Grade.Name AS Grade
-    FROM Poem   
-        LEFT JOIN Author ON Poem.AuthorId = Author.Id
-        LEFT JOIN Grade ON Author.GradeId = Grade.Id
-    GROUP BY Grade.Id, Grade.Name
-    ORDER BY Grade.Name;
+        SELECT 
+            COUNT(Poem.Id) AS NumberOfPoems, Grade.Name AS Grade
+        FROM Poem   
+            LEFT JOIN Author ON Poem.AuthorId = Author.Id
+            LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        GROUP BY Grade.Id, Grade.Name
+        ORDER BY Grade.Name;
 
 
 
 
 
 -- 13. How many authors are in each grade? (Order your results by grade starting with 1st Grade)
-    SELECT 
-        COUNT(Author.Id) AS NumberOfAuthors, Grade.Name AS Grade
-    FROM Author   
-        LEFT JOIN Grade ON Author.GradeId = Grade.Id
-    GROUP BY Grade.Id, Grade.Name
-    ORDER BY Grade.Name;
+        SELECT 
+            COUNT(Author.Id) AS NumberOfAuthors, Grade.Name AS Grade
+        FROM Author   
+            LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        GROUP BY Grade.Id, Grade.Name
+        ORDER BY Grade.Name;
 
 
 
 -- 14. What is the title of the poem that has the most words?
+        SELECT 
+            TOP 1 Poem.Title, Poem.WordCount
+        FROM Poem
+        ORDER BY Poem.WordCount DESC; 
 
 
 
@@ -147,7 +151,13 @@
 
 
 -- 16. How many poems have an emotion of sadness?
-
+        SELECT 
+            COUNT(PoemEmotion.id) AS PoemCountAboutSaddness
+        FROM PoemEmotion   
+            LEFT JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id 
+        WHERE   
+            Emotion.Name = 'Sadness';
+        
 
 
 
