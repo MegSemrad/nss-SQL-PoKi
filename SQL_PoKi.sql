@@ -1,20 +1,26 @@
-SELECT COUNT(p.Id) FROM Poem p
-
-
 -- 1. What grades are stored in the database?
-
+        SELECT
+            Name
+        FROM Grade;
 
 
 -- 2. What emotions may be associated with a poem?
-
+        SELECT
+            Name
+        FROM Emotion;
 
 
 -- 3. How many poems are in the database?
+        SELECT COUNT(p.Id) FROM Poem p
 
 
 
 -- 4. Sort authors alphabetically by name. What are the names of the top 76 authors?
-
+        SELECT 
+            top 75 Name
+        FROM 
+            Author 
+        ORDER BY Name;
 
 
 -- 5. Starting with the above query, add the grade of each of the authors.
