@@ -4,14 +4,19 @@
         FROM Grade;
 
 
+
+
 -- 2. What emotions may be associated with a poem?
         SELECT
             Name
         FROM Emotion;
 
 
+
+
 -- 3. How many poems are in the database?
         SELECT COUNT(p.Id) FROM Poem p
+
 
 
 
@@ -23,6 +28,8 @@
         ORDER BY Name;
 
 
+
+
 -- 5. Starting with the above query, add the grade of each of the authors.
         SELECT 
             top 76 Author.Name,
@@ -31,6 +38,8 @@
             Author 
         LEFT JOIN Grade ON Author.GradeId = Grade.Id
         ORDER BY Name;
+
+
 
 
 -- 6. Starting with the above query, add the recorded gender of each of the authors.
@@ -47,15 +56,30 @@
 
 
 
+
 -- 7. What is the total number of words in all poems in the database?
 
 
 
+
 -- 8. Which poem has the fewest characters?
+    SELECT Poem.CharCount, Poem.Title 
+    FROM Poem
+    WHERE Poem.CharCount = (
+        SELECT MIN(Poem.CharCount)
+        FROM Poem
+    );
+
 
 
 
 -- 9. How many authors are in the third grade?
+        SELECT 
+            count(author.id) AS NumberOfThirdGradeAuthors
+        FROM Author
+            LEFT JOIN Grade ON Author.GradeId = Grade.Id
+        WHERE   
+            Grade.Name = '3rd Grade'
 
 
 
@@ -63,7 +87,9 @@
 
 
 
+
 -- 11. What is the total number of poems written by fourth graders?
+
 
 
 
@@ -71,7 +97,9 @@
 
 
 
+
 -- 13. How many authors are in each grade? (Order your results by grade starting with 1st Grade)
+
 
 
 
@@ -79,7 +107,9 @@
 
 
 
+
 -- 15. Which author(s) have the most poems? (Remember authors can have the same name.)
+
 
 
 
@@ -87,7 +117,9 @@
 
 
 
+
 -- 17. How many poems are not associated with any emotion?
+
 
 
 
@@ -95,7 +127,9 @@
 
 
 
+
 -- 19. Which grade has the largest number of poems with an emotion of joy?
+
 
 
 
